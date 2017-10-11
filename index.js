@@ -22,44 +22,44 @@ app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
 
-//MQTT BROKER
-var settings = {
-  port: 1883
-};
-//here we start mosca
-var server = new mosca.Server(settings);
-server.on('ready', setup);
-// fired when the mqtt server is ready
-function setup() {
-  console.log('Mosca server is up and running')
-}
-// fired whena  client is connected
-server.on('clientConnected', function(client) {
-  console.log('client connected', client.id);
-});
-// fired when a message is received
-server.on('published', function(packet, client) {
-  console.log('Published : ', packet.payload);
-});
-// fired when a client subscribes to a topic
-server.on('subscribed', function(topic, client) {
-  console.log('subscribed : ', topic);
-});
-// fired when a client subscribes to a topic
-server.on('unsubscribed', function(topic, client) {
-  console.log('unsubscribed : ', topic);
-});
-// fired when a client is disconnecting
-server.on('clientDisconnecting', function(client) {
-  console.log('clientDisconnecting : ', client.id);
-});
-// fired when a client is disconnected
-server.on('clientDisconnected', function(client) {
-  console.log('clientDisconnected : ', client.id);
-});
+// //MQTT BROKER
+// var settings = {
+//   port: 1883
+// };
+// //here we start mosca
+// var server = new mosca.Server(settings);
+// server.on('ready', setup);
+// // fired when the mqtt server is ready
+// function setup() {
+//   console.log('Mosca server is up and running')
+// }
+// // fired whena  client is connected
+// server.on('clientConnected', function(client) {
+//   console.log('client connected', client.id);
+// });
+// // fired when a message is received
+// server.on('published', function(packet, client) {
+//   console.log('Published : ', packet.payload);
+// });
+// // fired when a client subscribes to a topic
+// server.on('subscribed', function(topic, client) {
+//   console.log('subscribed : ', topic);
+// });
+// // fired when a client subscribes to a topic
+// server.on('unsubscribed', function(topic, client) {
+//   console.log('unsubscribed : ', topic);
+// });
+// // fired when a client is disconnecting
+// server.on('clientDisconnecting', function(client) {
+//   console.log('clientDisconnecting : ', client.id);
+// });
+// // fired when a client is disconnected
+// server.on('clientDisconnected', function(client) {
+//   console.log('clientDisconnected : ', client.id);
+// });
 
 //MQTT client
-var mqtt_url = process.env.CLOUDMQTT_URL || 'mqtt://azebvdny:MsULac9Uhig0@m12.cloudmqtt.com:11839';
+var mqtt_url = process.env.CLOUDMQTT_URL || 'mqtt://localhost:1883';
 var mqtt_url_parse = url.parse(mqtt_url);
 var auth = (mqtt_url_parse.auth || ':').split(':');
 var client = mqtt.connect(mqtt_url);
@@ -74,9 +74,7 @@ var client = mqtt.connect(mqtt_url);
 //   username: auth[0],
 //   password: auth[1]
 // });
-client.on('ready', function(){
-  console.log('start');
-})
+
 console.log('pre-connect');
 client.on('connect', function() { // When connected
   console.log('connect');
