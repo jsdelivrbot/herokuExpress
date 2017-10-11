@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var mqtt = require('mqtt'), url = require('url');
 var mosca = require('mosca');
+require('dotenv').config();
 
 
 
@@ -59,6 +60,7 @@ app.listen(app.get('port'), function() {
 // });
 
 //MQTT client
+console.log(process.env);
 var mqtt_url = process.env.CLOUDMQTT_URL || 'mqtt://localhost:1883';
 var mqtt_url_parse = url.parse(mqtt_url);
 var auth = (mqtt_url_parse.auth || ':').split(':');
