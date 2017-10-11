@@ -59,7 +59,7 @@ server.on('clientDisconnected', function(client) {
 });
 
 //MQTT client
-var mqtt_url = process.env.CLOUDMQTT_URL || 'mqtt://localhost:1883';
+var mqtt_url = process.env.CLOUDMQTT_URL || 'mqtt://azebvdny:MsULac9Uhig0@m12.cloudmqtt.com:11839';
 var mqtt_url_parse = url.parse(mqtt_url);
 var auth = (mqtt_url_parse.auth || ':').split(':');
 var client = mqtt.connect(mqtt_url);
