@@ -58,9 +58,12 @@ app.listen(app.get('port'), function() {
 // server.on('clientDisconnected', function(client) {
 //   console.log('clientDisconnected : ', client.id);
 // });
+// // END MQTT BROKER
+
 
 //MQTT client
-console.log(process.env);
+//console.log(process.env);
+//heroku config:get CLOUDMQTT_URL -> para obtener la url del servicio en heroku
 var mqtt_url = process.env.CLOUDMQTT_URL || 'mqtt://localhost:1883';
 var mqtt_url_parse = url.parse(mqtt_url);
 var auth = (mqtt_url_parse.auth || ':').split(':');
